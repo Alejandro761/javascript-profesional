@@ -1,5 +1,14 @@
 function MediaPlayer (config) {
-    this.media = config.el
+    this.media = config.el;
+    this.plugins = config.plugins || [];
+
+    this._initPlugins();
+}
+
+MediaPlayer.prototype._initPlugins = function () {
+    this.plugins.forEach(plugin => {
+        plugin.run(this);
+    });
 }
 
 MediaPlayer.prototype.play = function() {
@@ -8,6 +17,14 @@ MediaPlayer.prototype.play = function() {
     } else {
         this.media.pause();
     }
+}
+
+MediaPlayer.prototype.mute = function() {
+    this.media.muted = true;
+}
+
+MediaPlayer.prototype.unmute = function() {
+    this.media.unmuted = false;
 }
 
 export default MediaPlayer;
