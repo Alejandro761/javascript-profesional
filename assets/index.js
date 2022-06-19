@@ -8,7 +8,8 @@ const button = document.querySelector('button');
 const player = new MediaPlayer({
     el: video,
     plugins: [
-        new AutoPlay()
+        new AutoPlay(),
+        new AutoPause(),
     ],
 });
 button.onclick = () => player.play();
